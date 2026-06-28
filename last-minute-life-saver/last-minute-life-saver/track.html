@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Track Your Hero — Last-Minute Life Saver</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="logo"><span class="logo-icon">⚡</span><span>Life<strong>Saver</strong></span></a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="request.html">Get Help</a>
+        <a href="helpers.html">Find Helpers</a>
+        <a href="register-helper.html">Become a Hero</a>
+        <a href="dashboard.html">Dashboard</a>
+      </div>
+      <a href="request.html" class="btn btn-danger nav-cta"><i class="fa fa-bolt"></i> SOS</a>
+      <button class="hamburger" onclick="toggleMenu()"><i class="fa fa-bars"></i></button>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="index.html">Home</a>
+      <a href="request.html">Get Help</a>
+      <a href="helpers.html">Find Helpers</a>
+      <a href="register-helper.html">Become a Hero</a>
+      <a href="dashboard.html">Dashboard</a>
+    </div>
+  </nav>
+
+  <div class="container" style="padding-top:2rem;padding-bottom:3rem">
+    <div class="track-layout">
+
+      <!-- Left: Status -->
+      <div class="track-status-col">
+
+        <!-- Hero card -->
+        <div class="hero-tracker-card">
+          <div class="tracker-live-badge"><span class="pulse-dot"></span> Live tracking</div>
+          <div class="tracker-hero-info">
+            <div class="track-avatar" id="trackAvatar">RS</div>
+            <div>
+              <h2 id="trackName">Rajesh Singh</h2>
+              <p id="trackSkill" style="color:#888;font-size:14px">🔧 Plumber</p>
+              <div class="track-rating">⭐⭐⭐⭐⭐ <span>4.9 · 120 jobs</span></div>
+            </div>
+          </div>
+          <div class="eta-box">
+            <div class="eta-num" id="etaNum">18</div>
+            <div class="eta-label">minutes away</div>
+          </div>
+        </div>
+
+        <!-- Progress steps -->
+        <div class="track-steps">
+          <div class="track-step done" id="ts1">
+            <div class="ts-line"></div>
+            <div class="ts-circle"><i class="fa fa-check"></i></div>
+            <div class="ts-content">
+              <div class="ts-title">SOS Sent</div>
+              <div class="ts-time">2 minutes ago</div>
+            </div>
+          </div>
+          <div class="track-step done" id="ts2">
+            <div class="ts-line"></div>
+            <div class="ts-circle"><i class="fa fa-check"></i></div>
+            <div class="ts-content">
+              <div class="ts-title">Helper Found</div>
+              <div class="ts-time">Rajesh accepted your request</div>
+            </div>
+          </div>
+          <div class="track-step active" id="ts3">
+            <div class="ts-line"></div>
+            <div class="ts-circle"><i class="fa fa-car"></i></div>
+            <div class="ts-content">
+              <div class="ts-title">On the Way</div>
+              <div class="ts-time" id="onTheWayTime">Estimated arrival: 18 minutes</div>
+            </div>
+          </div>
+          <div class="track-step" id="ts4">
+            <div class="ts-line"></div>
+            <div class="ts-circle">4</div>
+            <div class="ts-content">
+              <div class="ts-title">Arrived</div>
+              <div class="ts-time">Pending</div>
+            </div>
+          </div>
+          <div class="track-step" id="ts5">
+            <div class="ts-line last"></div>
+            <div class="ts-circle">5</div>
+            <div class="ts-content">
+              <div class="ts-title">Problem Solved</div>
+              <div class="ts-time">Pending</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Action buttons -->
+        <div class="track-actions">
+          <a href="tel:+919876543210" class="btn btn-teal">
+            <i class="fa fa-phone"></i> Call Rajesh
+          </a>
+          <a href="https://wa.me/919876543210" target="_blank" class="btn btn-outline">
+            <i class="fab fa-whatsapp"></i> WhatsApp
+          </a>
+          <button class="btn btn-outline btn-danger" onclick="cancelRequest()">
+            <i class="fa fa-xmark"></i> Cancel
+          </button>
+        </div>
+
+        <!-- Request summary -->
+        <div class="request-summary">
+          <h3>Your request</h3>
+          <div class="summary-row"><span>Category</span><strong>🔧 Plumber</strong></div>
+          <div class="summary-row"><span>Location</span><strong>Model Town, Ludhiana</strong></div>
+          <div class="summary-row"><span>Urgency</span><strong style="color:#e74c3c">🚨 RIGHT NOW</strong></div>
+          <div class="summary-row"><span>Status</span><strong style="color:#27ae60">Helper en route</strong></div>
+        </div>
+      </div>
+
+      <!-- Right: Map placeholder -->
+      <div class="track-map-col">
+        <div class="map-placeholder">
+          <div class="map-bg">
+            <!-- Simulated map with grid lines -->
+            <svg width="100%" height="100%" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+              <!-- Grid -->
+              <defs>
+                <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+                  <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#e5e7eb" stroke-width="0.5"/>
+                </pattern>
+              </defs>
+              <rect width="400" height="400" fill="#f8fafc"/>
+              <rect width="400" height="400" fill="url(#grid)"/>
+
+              <!-- Roads -->
+              <rect x="160" y="0" width="10" height="400" fill="#e2e8f0" rx="2"/>
+              <rect x="0" y="190" width="400" height="10" fill="#e2e8f0" rx="2"/>
+              <rect x="280" y="0" width="6" height="400" fill="#e2e8f0" rx="2"/>
+              <rect x="0" y="100" width="400" height="6" fill="#e2e8f0" rx="2"/>
+              <rect x="0" y="300" width="400" height="6" fill="#e2e8f0" rx="2"/>
+              <rect x="80" y="0" width="6" height="400" fill="#e2e8f0" rx="2"/>
+
+              <!-- Buildings -->
+              <rect x="20" y="20" width="55" height="70" fill="#dde3ea" rx="3"/>
+              <rect x="90" y="20" width="65" height="70" fill="#dde3ea" rx="3"/>
+              <rect x="175" y="20" width="95" height="70" fill="#dde3ea" rx="3"/>
+              <rect x="295" y="20" width="85" height="70" fill="#dde3ea" rx="3"/>
+
+              <rect x="20" y="110" width="55" height="70" fill="#dde3ea" rx="3"/>
+              <rect x="90" y="110" width="65" height="65" fill="#dde3ea" rx="3"/>
+              <rect x="175" y="110" width="95" height="70" fill="#dde3ea" rx="3"/>
+              <rect x="295" y="110" width="55" height="70" fill="#dde3ea" rx="3"/>
+
+              <rect x="20" y="205" width="55" height="85" fill="#dde3ea" rx="3"/>
+              <rect x="90" y="205" width="65" height="85" fill="#dde3ea" rx="3"/>
+              <rect x="175" y="205" width="95" height="85" fill="#dde3ea" rx="3"/>
+              <rect x="295" y="205" width="85" height="85" fill="#dde3ea" rx="3"/>
+
+              <rect x="20" y="310" width="55" height="70" fill="#dde3ea" rx="3"/>
+              <rect x="90" y="310" width="65" height="70" fill="#dde3ea" rx="3"/>
+              <rect x="175" y="310" width="95" height="70" fill="#dde3ea" rx="3"/>
+              <rect x="295" y="310" width="85" height="70" fill="#dde3ea" rx="3"/>
+
+              <!-- Route line -->
+              <polyline points="80,320 80,195 165,195 165,140" fill="none" stroke="#e74c3c" stroke-width="3" stroke-dasharray="8,4" opacity="0.8"/>
+
+              <!-- Destination pin (user) -->
+              <circle cx="165" cy="140" r="14" fill="#e74c3c" opacity="0.2"/>
+              <circle cx="165" cy="140" r="8" fill="#e74c3c"/>
+              <circle cx="165" cy="140" r="3" fill="white"/>
+
+              <!-- Helper moving -->
+              <g id="helperMarker" style="transform:translate(80px,320px)">
+                <circle r="16" fill="#1a1a2e" opacity="0.15"/>
+                <circle r="10" fill="#1a1a2e"/>
+                <text x="-6" y="4" font-size="11" fill="white" font-family="Arial">RS</text>
+              </g>
+
+              <!-- Labels -->
+              <text x="172" y="134" font-size="10" fill="#e74c3c" font-family="Arial" font-weight="bold">YOU</text>
+              <text x="90" y="316" font-size="10" fill="#1a1a2e" font-family="Arial" font-weight="bold">HERO</text>
+            </svg>
+
+            <div class="map-eta-overlay">
+              <i class="fa fa-car"></i>
+              <span id="mapEta">18 min away</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Rate & Review (shown after completion) -->
+        <div class="rate-section" id="rateSection" style="display:none">
+          <h3>How was Rajesh?</h3>
+          <div class="star-rating" id="starRating">
+            <i class="fa fa-star" data-val="1" onclick="setRating(1)"></i>
+            <i class="fa fa-star" data-val="2" onclick="setRating(2)"></i>
+            <i class="fa fa-star" data-val="3" onclick="setRating(3)"></i>
+            <i class="fa fa-star" data-val="4" onclick="setRating(4)"></i>
+            <i class="fa fa-star" data-val="5" onclick="setRating(5)"></i>
+          </div>
+          <textarea id="reviewText" placeholder="Write a short review..." rows="3" style="width:100%;margin-top:1rem"></textarea>
+          <button class="btn btn-teal btn-full" style="margin-top:0.75rem" onclick="submitReview()">
+            Submit Review
+          </button>
+        </div>
+
+        <!-- Demo progress button -->
+        <div style="text-align:center;margin-top:1.5rem">
+          <button class="btn btn-outline btn-sm" onclick="advanceDemo()">
+            <i class="fa fa-play"></i> Simulate progress (demo)
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom" style="border:none;padding-top:1.5rem">
+        <span>© 2026 Last-Minute Life Saver</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+  <script src="js/track.js"></script>
+</body>
+</html>

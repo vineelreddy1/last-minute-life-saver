@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Send SOS — Last-Minute Life Saver</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="logo">
+        <span class="logo-icon">⚡</span>
+        <span>Life<strong>Saver</strong></span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="request.html" class="active">Get Help</a>
+        <a href="helpers.html">Find Helpers</a>
+        <a href="register-helper.html">Become a Hero</a>
+        <a href="dashboard.html">Dashboard</a>
+      </div>
+      <a href="request.html" class="btn btn-danger nav-cta"><i class="fa fa-bolt"></i> SOS</a>
+      <button class="hamburger" onclick="toggleMenu()"><i class="fa fa-bars"></i></button>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="index.html">Home</a>
+      <a href="request.html">Get Help</a>
+      <a href="helpers.html">Find Helpers</a>
+      <a href="register-helper.html">Become a Hero</a>
+      <a href="dashboard.html">Dashboard</a>
+    </div>
+  </nav>
+
+  <div class="page-header red-header">
+    <div class="container">
+      <div class="pulse-dot large"></div>
+      <h1><i class="fa fa-bolt"></i> Send SOS</h1>
+      <p>Tell us what you need — we'll find the right hero near you</p>
+    </div>
+  </div>
+
+  <div class="container" style="padding-top:2.5rem;padding-bottom:3rem">
+    <div class="request-layout">
+
+      <!-- LEFT: Form -->
+      <div class="request-form-col">
+
+        <!-- Step 1: Category -->
+        <div class="form-section" id="step1">
+          <div class="form-section-header">
+            <div class="step-badge">1</div>
+            <h2>What do you need?</h2>
+          </div>
+          <div class="cat-select-grid" id="catGrid">
+            <button class="cat-select-btn" data-cat="plumber" onclick="selectCategory(this)">🔧 Plumber</button>
+            <button class="cat-select-btn" data-cat="electrician" onclick="selectCategory(this)">⚡ Electrician</button>
+            <button class="cat-select-btn" data-cat="baker" onclick="selectCategory(this)">🎂 Baker</button>
+            <button class="cat-select-btn" data-cat="driver" onclick="selectCategory(this)">🚗 Driver</button>
+            <button class="cat-select-btn" data-cat="pharmacy" onclick="selectCategory(this)">💊 Pharmacy</button>
+            <button class="cat-select-btn" data-cat="locksmith" onclick="selectCategory(this)">🔒 Locksmith</button>
+            <button class="cat-select-btn" data-cat="doctor" onclick="selectCategory(this)">🩺 Doctor</button>
+            <button class="cat-select-btn" data-cat="cleaner" onclick="selectCategory(this)">🧹 Cleaner</button>
+            <button class="cat-select-btn" data-cat="mechanic" onclick="selectCategory(this)">🔩 Mechanic</button>
+            <button class="cat-select-btn" data-cat="carpenter" onclick="selectCategory(this)">🪚 Carpenter</button>
+            <button class="cat-select-btn" data-cat="catering" onclick="selectCategory(this)">🍱 Catering</button>
+            <button class="cat-select-btn" data-cat="other" onclick="selectCategory(this)">🆘 Other</button>
+          </div>
+        </div>
+
+        <!-- Step 2: Details -->
+        <div class="form-section" id="step2">
+          <div class="form-section-header">
+            <div class="step-badge">2</div>
+            <h2>Describe your emergency</h2>
+          </div>
+          <div class="form-group">
+            <label>What's the problem? <span class="required">*</span></label>
+            <textarea id="description" rows="4" placeholder="E.g. Pipe burst in bathroom, water everywhere, need help urgently..."></textarea>
+          </div>
+          <div class="form-group">
+            <label>Your name <span class="required">*</span></label>
+            <input type="text" id="name" placeholder="Your full name" />
+          </div>
+          <div class="form-group">
+            <label>Phone number <span class="required">*</span></label>
+            <input type="tel" id="phone" placeholder="+91 98765 43210" />
+          </div>
+        </div>
+
+        <!-- Step 3: Location -->
+        <div class="form-section" id="step3">
+          <div class="form-section-header">
+            <div class="step-badge">3</div>
+            <h2>Your location</h2>
+          </div>
+          <div class="form-group">
+            <label>Address / Locality <span class="required">*</span></label>
+            <input type="text" id="location" placeholder="Street, mohalla, or area name" />
+          </div>
+          <div class="form-group">
+            <label>City</label>
+            <select id="city">
+              <option value="ludhiana">Ludhiana</option>
+              <option value="amritsar">Amritsar</option>
+              <option value="chandigarh">Chandigarh</option>
+              <option value="jalandhar">Jalandhar</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <button class="btn btn-outline btn-sm" onclick="getLocation()">
+            <i class="fa fa-location-dot"></i> Use my current location
+          </button>
+          <p id="locationStatus" style="font-size:12px;color:#888;margin-top:8px"></p>
+        </div>
+
+        <!-- Step 4: Urgency -->
+        <div class="form-section" id="step4">
+          <div class="form-section-header">
+            <div class="step-badge">4</div>
+            <h2>How urgent is it?</h2>
+          </div>
+          <div class="urgency-options">
+            <label class="urgency-label" data-level="today">
+              <input type="radio" name="urgency" value="today" />
+              <div class="urgency-card yellow">
+                <span class="urgency-icon">⚠️</span>
+                <span class="urgency-title">Today</span>
+                <span class="urgency-sub">Within the day</span>
+              </div>
+            </label>
+            <label class="urgency-label" data-level="2hrs">
+              <input type="radio" name="urgency" value="2hrs" />
+              <div class="urgency-card orange">
+                <span class="urgency-icon">🔴</span>
+                <span class="urgency-title">Within 2 hrs</span>
+                <span class="urgency-sub">Pretty urgent</span>
+              </div>
+            </label>
+            <label class="urgency-label" data-level="now">
+              <input type="radio" name="urgency" value="now" />
+              <div class="urgency-card red">
+                <span class="urgency-icon">🚨</span>
+                <span class="urgency-title">RIGHT NOW</span>
+                <span class="urgency-sub">Emergency</span>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- Submit -->
+        <div style="margin-top:2rem">
+          <button class="btn btn-danger btn-lg btn-full" onclick="submitSOS()">
+            <i class="fa fa-bolt"></i> Send SOS — Find Help Now
+          </button>
+          <p style="font-size:12px;color:#888;text-align:center;margin-top:8px">
+            Your request is shared only with verified helpers near you
+          </p>
+        </div>
+      </div>
+
+      <!-- RIGHT: Info panel -->
+      <div class="request-info-col">
+        <div class="info-card">
+          <h3><i class="fa fa-shield-halved"></i> How this works</h3>
+          <div class="info-steps">
+            <div class="info-step">
+              <div class="info-step-num">1</div>
+              <div>Your SOS is sent to verified helpers within 5 km</div>
+            </div>
+            <div class="info-step">
+              <div class="info-step-num">2</div>
+              <div>The fastest responder accepts and contacts you</div>
+            </div>
+            <div class="info-step">
+              <div class="info-step-num">3</div>
+              <div>You track them live until the job is done</div>
+            </div>
+            <div class="info-step">
+              <div class="info-step-num">4</div>
+              <div>Rate your hero to help the community</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="info-card" style="margin-top:1rem">
+          <h3><i class="fa fa-clock"></i> Avg. response times</h3>
+          <div class="response-times">
+            <div class="rt-row"><span>🔧 Plumber</span><span class="rt-time">~18 min</span></div>
+            <div class="rt-row"><span>⚡ Electrician</span><span class="rt-time">~22 min</span></div>
+            <div class="rt-row"><span>🔒 Locksmith</span><span class="rt-time">~15 min</span></div>
+            <div class="rt-row"><span>🩺 Doctor</span><span class="rt-time">~25 min</span></div>
+            <div class="rt-row"><span>🚗 Driver</span><span class="rt-time">~10 min</span></div>
+          </div>
+        </div>
+
+        <div class="trust-badges">
+          <div class="trust-item"><i class="fa fa-check-circle"></i> Verified helpers only</div>
+          <div class="trust-item"><i class="fa fa-star"></i> Rated by community</div>
+          <div class="trust-item"><i class="fa fa-lock"></i> Your info stays private</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Success Modal -->
+  <div class="modal-overlay" id="successModal" style="display:none">
+    <div class="modal">
+      <div class="modal-icon success">✅</div>
+      <h2>SOS Sent!</h2>
+      <p>Your request has been sent to <strong id="matchCount">3</strong> verified helpers near you.</p>
+      <p style="color:#888;font-size:14px;margin-top:8px">You'll get a call/WhatsApp within minutes.</p>
+      <div class="modal-actions">
+        <a href="track.html" class="btn btn-danger btn-full">Track Your Hero →</a>
+        <button class="btn btn-outline btn-full" onclick="closeModal()" style="margin-top:8px">Back to Home</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom" style="border:none;padding-top:1.5rem">
+        <span>© 2026 Last-Minute Life Saver</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+  <script src="js/request.js"></script>
+</body>
+</html>

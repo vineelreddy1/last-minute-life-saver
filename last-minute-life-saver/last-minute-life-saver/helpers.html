@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Find Helpers — Last-Minute Life Saver</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="logo"><span class="logo-icon">⚡</span><span>Life<strong>Saver</strong></span></a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="request.html">Get Help</a>
+        <a href="helpers.html" class="active">Find Helpers</a>
+        <a href="register-helper.html">Become a Hero</a>
+        <a href="dashboard.html">Dashboard</a>
+      </div>
+      <a href="request.html" class="btn btn-danger nav-cta"><i class="fa fa-bolt"></i> SOS</a>
+      <button class="hamburger" onclick="toggleMenu()"><i class="fa fa-bars"></i></button>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="index.html">Home</a>
+      <a href="request.html">Get Help</a>
+      <a href="helpers.html">Find Helpers</a>
+      <a href="register-helper.html">Become a Hero</a>
+      <a href="dashboard.html">Dashboard</a>
+    </div>
+  </nav>
+
+  <div class="page-header">
+    <div class="container">
+      <h1><i class="fa fa-users"></i> Find Local Heroes</h1>
+      <p>Browse verified helpers available in your area right now</p>
+    </div>
+  </div>
+
+  <div class="container" style="padding-top:2rem;padding-bottom:3rem">
+
+    <!-- Filters -->
+    <div class="filters-bar">
+      <div class="filter-group">
+        <label>Category</label>
+        <select id="filterCat" onchange="filterHelpers()">
+          <option value="all">All categories</option>
+          <option value="plumber">🔧 Plumber</option>
+          <option value="electrician">⚡ Electrician</option>
+          <option value="baker">🎂 Baker</option>
+          <option value="driver">🚗 Driver</option>
+          <option value="pharmacy">💊 Pharmacy</option>
+          <option value="locksmith">🔒 Locksmith</option>
+          <option value="doctor">🩺 Doctor</option>
+          <option value="cleaner">🧹 Cleaner</option>
+          <option value="mechanic">🔩 Mechanic</option>
+          <option value="carpenter">🪚 Carpenter</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label>Sort by</label>
+        <select id="filterSort" onchange="filterHelpers()">
+          <option value="rating">Highest rating</option>
+          <option value="distance">Nearest first</option>
+          <option value="jobs">Most jobs done</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label>Status</label>
+        <select id="filterStatus" onchange="filterHelpers()">
+          <option value="all">All</option>
+          <option value="available">Available now</option>
+          <option value="busy">Busy</option>
+        </select>
+      </div>
+      <div class="filter-search">
+        <input type="text" id="searchInput" placeholder="Search by name or skill..." oninput="filterHelpers()" />
+      </div>
+    </div>
+
+    <p id="resultsCount" style="font-size:14px;color:#888;margin-bottom:1.5rem"></p>
+
+    <!-- Helpers Grid -->
+    <div class="helpers-grid" id="helpersGrid"></div>
+  </div>
+
+  <!-- Helper Detail Modal -->
+  <div class="modal-overlay" id="helperModal" style="display:none">
+    <div class="modal modal-large">
+      <button class="modal-close" onclick="closeHelperModal()"><i class="fa fa-xmark"></i></button>
+      <div id="helperModalContent"></div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom" style="border:none;padding-top:1.5rem">
+        <span>© 2026 Last-Minute Life Saver</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+  <script src="js/helpers.js"></script>
+</body>
+</html>
